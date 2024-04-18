@@ -45,4 +45,4 @@ ark_flags="${ark_flags} ${ARK_EXTRA_DASH_OPTS}"
 STEAM_COMPAT_DATA_PATH=$(eval echo "$STEAM_COMPAT_DATA_PATH")
 
 #starting server and outputting log file
-proton run /opt/arkserver/ShooterGame/Binaries/Win64/ArkAscendedServer.exe ${cmd} ${ark_flags} > /dev/null 2>&1
+proton run /opt/arkserver/ShooterGame/Binaries/Win64/ArkAscendedServer.exe ${cmd} ${ark_flags} "$@" > /dev/null 2>&1

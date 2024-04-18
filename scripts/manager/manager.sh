@@ -192,11 +192,16 @@ start() {
         return
     fi    
 
+    ark_params=
+    if [[ $1 == "--wipe" ]]; then
+        ark_params=-ForceRespawnDinos
+    fi
+
     echo "Starting server on port ${SERVER_PORT}"
     echo "-------- STARTING SERVER --------" >> $LOG_FILE
 
     # Start server in the background + nohup and save PID
-    nohup /opt/manager/manager_server_start.sh >/dev/null 2>&1 &
+    nohup /opt/manager/manager_server_start.sh $ark_params >/dev/null 2>&1 &
     ark_pid=$!
     echo "$ark_pid" > $PID_FILE
     sleep 3
@@ -256,7 +261,7 @@ stop() {
 
 restart() {
     stop "$1"
-    start
+    start "$1"
 }
 
 saveworld() {
@@ -349,7 +354,7 @@ main() {
             status "$option"
             ;;
         "start")
-            start
+            start "$option"
             ;;
         "stop")
             stop "$option"

@@ -6,6 +6,9 @@ set -e
 # Create steam directory and set environment variables
 mkdir -p "${STEAM_COMPAT_DATA_PATH}"
 
+# delete manifest to work around steamcmd update issues
+rm /opt/arkserver/steamapps/appmanifest_${ASA_APPID}.acf
+
 # Install or update ASA server + verify installation
 /opt/steamcmd/steamcmd.sh +force_install_dir /opt/arkserver +login anonymous +app_update ${ASA_APPID} validate +quit
 
